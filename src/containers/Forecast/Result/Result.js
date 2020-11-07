@@ -3,7 +3,7 @@ import DailyForecast from '../../../components/DailyForecast/DailyForecast';
 import Grid from '@material-ui/core/Grid';
 import classes from './Result.module.css';
 
-const key = "YvY5nbXHHgp8qjSMs2v4a8KQRlXTo0KZ";
+const key = "VgAuPIOeqcipzyaQOZjijXfiDzxbYAt3";
 
 const handleDate = (dateString) => {
     let date = dateString.split('T')[0];

@@ -9,11 +9,11 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          <Switch>
-            <Route path="/favorites" exact component={Favorites} />
-            <Route path="/" component={Forecast} />
-          </Switch>
-        </Layout>
+            <Switch>
+              <Route path="/favorites" exact component={Favorites} />
+              <Route path="/" component={Forecast} />
+            </Switch>
+          </Layout>
       </div>
     );
   }

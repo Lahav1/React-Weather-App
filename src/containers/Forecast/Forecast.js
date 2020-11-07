@@ -12,6 +12,13 @@ class Forecast extends Component {
     updateSearchString = (value) => {
         this.setState({searchString: value});
     }
+
+    componentDidMount() {
+        // in case page was reached by clicking a favorite, change the search string accordingly.
+        if (this.props.location.city != undefined) {
+            this.setState({searchString: this.props.location.city});
+        }
+    }
     
     render() {
         return (
