@@ -1,0 +1,18 @@
+.Button {
+    background-color: transparent; 
+    border: none; 
+    line-height: 24px;
+    vertical-align: middle;
+}
+
+.Image {
+    width: 30px;
+    height: 30px;
+    vertical-align: bottom;
+}
+
+.Text {
+    vertical-align: middle;
+    font-size: 18px;
+    padding: 3px 3px 1px 1px;
+}

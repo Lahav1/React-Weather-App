@@ -5,10 +5,9 @@ import Favorite from './Favorite/Favorite';
 class Favorites extends Component {
     render() {
         // replace later with list stored in state (passed by redux)
-        let locations = ["Amsterdam/24°C", "London/22°C", "Berlin/24°C", "Tel Aviv/31°C", "Haifa/30°C"];
+        let locations = ["Amsterdam", "London", "Berlin", "Tel Aviv"];
         let favorites = locations.map((location, index) => {
-            let details = location.split('/');
-            return <Favorite city={details[0]} temprature={details[1]} key={index}/>;
+            return <Favorite city={location} key={index}/>;
         });
         return (
             <div>

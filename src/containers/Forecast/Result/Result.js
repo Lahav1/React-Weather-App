@@ -2,51 +2,8 @@ import React, {Component} from 'react';
 import DailyForecast from '../../../components/DailyForecast/DailyForecast';
 import Grid from '@material-ui/core/Grid';
 import classes from './Result.module.css';
-
-const key = "VgAuPIOeqcipzyaQOZjijXfiDzxbYAt3";
-
-const handleDate = (dateString) => {
-    let date = dateString.split('T')[0];
-    let splittedDate = date.split('-');
-    return splittedDate[2] + '/' + splittedDate[1] + '/' + splittedDate[0];
-}
-
-const toCelsius = (f) => Math.round((5/9) * (f - 32) * 10) / 10;
-
-const getCityDetails = async (searchString) => {
-    const base = 'http://dataservice.accuweather.com/locations/v1/cities/search';
-    const query = `?apikey=${key}&q=${searchString}`;
-    const response = await fetch(base + query);
-    const data = await response.json();
-    return data[0];
-}
-
-const getCurrentWeather = async (locationKey) => {
-    const base = 'http://dataservice.accuweather.com/currentconditions/v1/';
-    const query = `${locationKey}?apikey=${key}`;
-    const response = await fetch(base + query);
-    const data = await response.json();
-    return data[0];
-}
-
-const getForecast = async (locationKey) => {
-    const base = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/';
-    const query = `${locationKey}?apikey=${key}`;
-    const response = await fetch(base + query);
-    const data = await response.json();
-    return data;
-}
-
-const getData = async (searchString) => {
-    const cityDetails = await getCityDetails(searchString);
-    const currentWeather = await getCurrentWeather(cityDetails.Key);
-    const weatherForecast = await getForecast(cityDetails.Key);
-    return {
-        cityDetails: cityDetails,
-        currentWeather: currentWeather,
-        weatherForecast: weatherForecast
-    };
-}
+import FavoritesButton from '../FavoritesButton/FavoritesButton'
+import {handleDate, toCelsius, fetchCurrentAndForecast} from '../../../utils'
 
 class Result extends Component {
     constructor(props) {
@@ -75,7 +32,7 @@ class Result extends Component {
     }
 
     render() {
-        getData(this.props.searchString).then(data => {
+        fetchCurrentAndForecast(this.props.searchString).then(data => {
             this.setState({
                 city: data.cityDetails.EnglishName,
                 country: data.cityDetails.Country.EnglishName,
@@ -106,7 +63,7 @@ class Result extends Component {
                     </Grid>
                     <Grid xs={4} />
                     <Grid xs={4}>
-                        <button>Add to favorites</button>
+                        <FavoritesButton />
                     </Grid>
                     <Grid xs={12}>
                         <h3>{this.state.weatherText}</h3>
