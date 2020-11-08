@@ -1,9 +1,9 @@
-export const key = "mmbtKX2iIFQwKeBJpq9OAlADi8zNWvJH";
+export const key = "fp59bI7vMUXC8BmeByT1R0xBiHiOdcDM";
 
 export const handleDate = (dateString) => {
     let date = dateString.split('T')[0];
     let splittedDate = date.split('-');
-    return splittedDate[2] + '/' + splittedDate[1] + '/' + splittedDate[0];
+    return splittedDate[2] + '/' + splittedDate[1];
 }
 
 export const toCelsius = (f) => Math.round((5/9) * (f - 32) * 10) / 10;

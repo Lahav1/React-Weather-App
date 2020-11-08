@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Favorite from './Favorite/Favorite';
+import { connect } from 'react-redux';
 
 class Favorites extends Component {
     render() {
-        // replace later with list stored in state (passed by redux)
-        let locations = ["Amsterdam", "London", "Berlin", "Tel Aviv"];
+        let locations = this.props.favorites;
         let favorites = locations.map((location, index) => {
             return <Favorite city={location} key={index}/>;
         });
@@ -26,4 +26,10 @@ class Favorites extends Component {
     }
 }
 
-export default Favorites;
+const mapStateToProps = state => {
+    return {
+        favorites: state.favorites
+    }
+}
+
+export default connect(mapStateToProps)(Favorites);

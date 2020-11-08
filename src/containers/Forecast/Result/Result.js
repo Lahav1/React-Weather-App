@@ -3,7 +3,9 @@ import DailyForecast from '../../../components/DailyForecast/DailyForecast';
 import Grid from '@material-ui/core/Grid';
 import classes from './Result.module.css';
 import FavoritesButton from '../FavoritesButton/FavoritesButton'
-import {handleDate, toCelsius, fetchCurrentAndForecast} from '../../../utils'
+import { handleDate, toCelsius, fetchCurrentAndForecast } from '../../../utils'
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions';
 
 class Result extends Component {
     constructor(props) {
@@ -63,7 +65,8 @@ class Result extends Component {
                     </Grid>
                     <Grid xs={4} />
                     <Grid xs={4}>
-                        <FavoritesButton />
+                        {/* <FavoritesButton /> */}
+                        <button onClick={() => this.props.onFavoriteAdded(this.state.city)}>Add to favorites</button>
                     </Grid>
                     <Grid xs={12}>
                         <h3>{this.state.weatherText}</h3>
@@ -79,4 +82,17 @@ class Result extends Component {
     }
 }
 
-export default Result;
+const mapStateToProps = state => {
+    return {
+        favorites: state.favorites
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onFavoriteAdded: (c) => dispatch({type: actions.ADD_TO_FAVORITES, city: c}),
+        onFavoriteRemoved: (c) => dispatch({type: actions.REMOVE_FROM_FAVORITES, city: c})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Result);
