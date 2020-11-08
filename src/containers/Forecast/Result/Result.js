@@ -34,7 +34,6 @@ class Result extends Component {
     };
 
     checkIfFavorite = () => {
-        // console.log(this.props.favorites, this.state.city);
         if (this.props.favorites === undefined) {
             return false;
         }

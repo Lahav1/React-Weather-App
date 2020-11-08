@@ -1,9 +1,18 @@
-export const key = "TaOCrWIb9SntAGyVz9ZDSr7VtIEtClrb";
+export const key = "F5z7Gx93sFoiBZPV0im2stexk5BRY9BK";
 
 export const handleDate = (dateString) => {
     let date = dateString.split('T')[0];
     let splittedDate = date.split('-');
     return splittedDate[2] + '/' + splittedDate[1];
+}
+
+export const handleSuggestions = (suggestions) => {
+    let s = [];
+    var suggestion;
+    for (suggestion of suggestions) {
+        s.push(suggestion.LocalizedName + ", " + suggestion.Country.LocalizedName)
+    }
+    return s;
 }
 
 export const toCelsius = (f) => Math.round((5/9) * (f - 32) * 10) / 10;
@@ -27,6 +36,14 @@ export const getCurrentWeather = async (locationKey) => {
 export const getForecast = async (locationKey) => {
     const base = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/';
     const query = `${locationKey}?apikey=${key}`;
+    const response = await fetch(base + query);
+    const data = await response.json();
+    return data;
+}
+
+export const getAutocomplete = async (str) => {
+    const base = 'http://dataservice.accuweather.com/locations/v1/cities/autocomplete';
+    const query = `?apikey=${key}&q=${str}`;
     const response = await fetch(base + query);
     const data = await response.json();
     return data;
