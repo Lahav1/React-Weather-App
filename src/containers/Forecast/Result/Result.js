@@ -31,7 +31,18 @@ class Result extends Component {
             day5MinTemp: "",
             day5MaxTemp: "",
         }
-    }
+    };
+
+    checkIfFavorite = () => {
+        // console.log(this.props.favorites, this.state.city);
+        if (this.props.favorites === undefined) {
+            return false;
+        }
+        if (this.props.favorites.includes(this.state.city)) {
+            return true;
+        }
+        return false;
+    };
 
     render() {
         fetchCurrentAndForecast(this.props.searchString).then(data => {
@@ -57,6 +68,13 @@ class Result extends Component {
                 day5MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Maximum.Value).toString(),
             })   
         });
+        let favoritesButton;
+        if (this.checkIfFavorite() == true) {
+            favoritesButton = <FavoritesButton addFunction={() => this.props.onFavoriteRemoved(this.state.city)} isFavorite={true} />          
+                
+        } else {
+            favoritesButton = <FavoritesButton addFunction={() => this.props.onFavoriteAdded(this.state.city)} isFavorite={false} />
+        }   
         return (
             <div className={classes.Result}> 
                 <Grid container spacing={2}>
@@ -65,8 +83,7 @@ class Result extends Component {
                     </Grid>
                     <Grid xs={4} />
                     <Grid xs={4}>
-                        {/* <FavoritesButton /> */}
-                        <button onClick={() => this.props.onFavoriteAdded(this.state.city)}>Add to favorites</button>
+                        {favoritesButton}
                     </Grid>
                     <Grid xs={12}>
                         <h3>{this.state.weatherText}</h3>

@@ -13,7 +13,8 @@ const reducer = (state = initialState, action) => {
             };
         case actions.REMOVE_FROM_FAVORITES:
             return {
-                
+                ...state,
+                favorites: state.favorites.filter(favorite => favorite !== action.city)
             };
     }
     return state;
