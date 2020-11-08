@@ -2,6 +2,9 @@ import React from 'react';
 import classes from './DailyForecast.module.css'
 
 const getIcon = (number) => {
+    if (number === '') {
+        return;
+    }
     if (number < 10) {
         return `https://developer.accuweather.com/sites/default/files/0${number}-s.png`;
     } 

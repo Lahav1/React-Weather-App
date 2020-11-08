@@ -35,6 +35,7 @@ class Result extends Component {
             day5MinTemp: "",
             day5MaxTemp: "",
             day5Icon: "",
+            error: false
         }
     };
 
@@ -75,34 +76,46 @@ class Result extends Component {
                 day5MinTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Minimum.Value).toString(),
                 day5MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Maximum.Value).toString(),
                 day5Icon: data.weatherForecast.DailyForecasts[4].Day.Icon,
-            })   
-        });
+            });   
+        }).catch(error => this.setState({error: true}));
+        
         let favoritesButton;
         if (this.checkIfFavorite() == true) {
             favoritesButton = <FavoritesButton addFunction={() => this.props.onFavoriteRemoved(this.state.city)} isFavorite={true} />          
                 
         } else {
             favoritesButton = <FavoritesButton addFunction={() => this.props.onFavoriteAdded(this.state.city)} isFavorite={false} />
-        }   
+        } 
+
+        // in case of an error, load an error message instead of the content.
+        let content = <p>Sorry, something went wrong</p>;
+        if (this.state.error == false) {
+            content = (
+                <div className={classes.Result}> 
+                    <Grid container spacing={2}>
+                        <Grid xs={4}>
+                            <h style={{fontSize:"18px"}}>{this.state.city}, {this.state.country}, {this.state.temeprature}°C</h>
+                        </Grid>
+                        <Grid xs={4} />
+                        <Grid xs={4}>
+                            {favoritesButton}
+                        </Grid>
+                        <Grid xs={12}>
+                            <h3>{this.state.weatherText}</h3>
+                        </Grid>
+                        <DailyForecast day={this.state.day1Date} min={this.state.day1MinTemp} max={this.state.day1MaxTemp} iconNumber={this.state.day1Icon} />
+                        <DailyForecast day={this.state.day2Date} min={this.state.day2MinTemp} max={this.state.day2MaxTemp} iconNumber={this.state.day2Icon} />
+                        <DailyForecast day={this.state.day3Date} min={this.state.day3MinTemp} max={this.state.day3MaxTemp} iconNumber={this.state.day3Icon} />
+                        <DailyForecast day={this.state.day4Date} min={this.state.day4MinTemp} max={this.state.day4MaxTemp} iconNumber={this.state.day4Icon} />
+                        <DailyForecast day={this.state.day5Date} min={this.state.day5MinTemp} max={this.state.day5MaxTemp} iconNumber={this.state.day5Icon} />
+                    </Grid>
+                </div>
+            )
+        }
+
         return (
-            <div className={classes.Result}> 
-                <Grid container spacing={2}>
-                    <Grid xs={4}>
-                        <h style={{fontSize:"18px"}}>{this.state.city}, {this.state.country}, {this.state.temeprature}°C</h>
-                    </Grid>
-                    <Grid xs={4} />
-                    <Grid xs={4}>
-                        {favoritesButton}
-                    </Grid>
-                    <Grid xs={12}>
-                        <h3>{this.state.weatherText}</h3>
-                    </Grid>
-                    <DailyForecast day={this.state.day1Date} min={this.state.day1MinTemp} max={this.state.day1MaxTemp} iconNumber={this.state.day1Icon} />
-                    <DailyForecast day={this.state.day2Date} min={this.state.day2MinTemp} max={this.state.day2MaxTemp} iconNumber={this.state.day2Icon} />
-                    <DailyForecast day={this.state.day3Date} min={this.state.day3MinTemp} max={this.state.day3MaxTemp} iconNumber={this.state.day3Icon} />
-                    <DailyForecast day={this.state.day4Date} min={this.state.day4MinTemp} max={this.state.day4MaxTemp} iconNumber={this.state.day4Icon} />
-                    <DailyForecast day={this.state.day5Date} min={this.state.day5MinTemp} max={this.state.day5MaxTemp} iconNumber={this.state.day5Icon} />
-                </Grid>
+            <div>
+                {content}
             </div>
         ); 
     }

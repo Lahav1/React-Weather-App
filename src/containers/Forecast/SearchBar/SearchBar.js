@@ -8,19 +8,30 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 class SearchBar extends Component {
     constructor(props) {
         super(props);
-        this.state = { currentSearch: "", suggestions: []}
+        this.state = { currentSearch: "", suggestions: [], error: false}
     }
 
     sendToParent = () => {
-        this.props.updateValue(document.getElementById("bar").value);
+        let val = document.getElementById("bar").value;
+        if (val != "") {
+            this.props.updateValue(document.getElementById("bar").value);
+        }
     }
 
     handleChange = () => {
         let val = document.getElementById("bar").value;
-        getAutocomplete(val).then((data => this.setState({suggestions: handleSuggestions(data)})));
+        if (val != "") {
+            getAutocomplete(val).then((data => this.setState({suggestions: handleSuggestions(data)})))
+            .catch(error => this.setState({error:true}));    
+        }
     }
 
     render() {
+        // in case of an error, empty the auto complete suggestion list.
+        if (this.state.error == true) {
+            this.setState({suggestions: []});
+        }
+        
         return (
             <div className={classes.Content}>
                 <Autocomplete 

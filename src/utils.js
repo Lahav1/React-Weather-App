@@ -1,4 +1,4 @@
-export const key = "hmOtCzaGvQLqWOeXLNxbBBRVs7KN6d4l";
+export const key = "WF5A7NBTJAIcRyG6uDA6KCwBe5AO2yHa";
 
 export const handleDate = (dateString) => {
     let date = dateString.split('T')[0];
@@ -18,7 +18,7 @@ export const handleSuggestions = (suggestions) => {
 export const toCelsius = (f) => Math.round((5/9) * (f - 32) * 10) / 10;
 
 export const getCityDetails = async (searchString) => {
-    const base = 'http://dataservice.accuweather.com/locations/v1/cities/search';
+    const base = 'https://dataservice.accuweather.com/locations/v1/cities/search';
     const query = `?apikey=${key}&q=${searchString}`;
     const response = await fetch(base + query);
     const data = await response.json();
@@ -26,7 +26,7 @@ export const getCityDetails = async (searchString) => {
 }
 
 export const getCurrentWeather = async (locationKey) => {
-    const base = 'http://dataservice.accuweather.com/currentconditions/v1/';
+    const base = 'https://dataservice.accuweather.com/currentconditions/v1/';
     const query = `${locationKey}?apikey=${key}`;
     const response = await fetch(base + query);
     const data = await response.json();
@@ -34,7 +34,7 @@ export const getCurrentWeather = async (locationKey) => {
 }
 
 export const getForecast = async (locationKey) => {
-    const base = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/';
+    const base = 'https://dataservice.accuweather.com/forecasts/v1/daily/5day/';
     const query = `${locationKey}?apikey=${key}`;
     const response = await fetch(base + query);
     const data = await response.json();
@@ -42,7 +42,7 @@ export const getForecast = async (locationKey) => {
 }
 
 export const getAutocomplete = async (str) => {
-    const base = 'http://dataservice.accuweather.com/locations/v1/cities/autocomplete';
+    const base = 'https://dataservice.accuweather.com/locations/v1/cities/autocomplete';
     const query = `?apikey=${key}&q=${str}`;
     const response = await fetch(base + query);
     const data = await response.json();

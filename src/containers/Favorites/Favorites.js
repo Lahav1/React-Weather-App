@@ -19,7 +19,6 @@ class Favorites extends Component {
                         <h3>{this.props.description}</h3>
                     </Grid>
                     {favorites}
-
                 </Grid>
             </div>
         ); 
