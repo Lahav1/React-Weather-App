@@ -1,4 +1,4 @@
-export const key = "F5z7Gx93sFoiBZPV0im2stexk5BRY9BK";
+export const key = "SMjnpvSAtuPHqhNSIZtogSgPkLvKB2MG";
 
 export const handleDate = (dateString) => {
     let date = dateString.split('T')[0];

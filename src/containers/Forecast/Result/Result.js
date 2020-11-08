@@ -78,7 +78,7 @@ class Result extends Component {
             <div className={classes.Result}> 
                 <Grid container spacing={2}>
                     <Grid xs={4}>
-                        <h>{this.state.city}, {this.state.country}, {this.state.temeprature}°C</h>
+                        <h style={{fontSize:"18px"}}>{this.state.city}, {this.state.country}, {this.state.temeprature}°C</h>
                     </Grid>
                     <Grid xs={4} />
                     <Grid xs={4}>

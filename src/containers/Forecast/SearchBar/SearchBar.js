@@ -22,18 +22,19 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div>
+            <div className={classes.Content}>
                 <Autocomplete 
                     id = "bar"
                     freeSolo
                     options = {this.state.suggestions}
+                    style={{ width: 300 }}
                     renderInput = {(params) => (
                     <TextField {...params} id="inner" label="Enter location" 
                     type="search" variant="outlined" onChange={this.handleChange} />)}
                 />
-                
                 <button className={classes.Button} onClick={this.sendToParent}>
-                    <img src={SearchIcon} />
+                    <img className={classes.Image} src={SearchIcon}/>
+                    <h className={classes.Text}>Search</h>
                 </button>
             </div>
         ); 
