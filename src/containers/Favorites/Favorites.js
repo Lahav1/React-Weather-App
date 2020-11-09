@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Favorite from './Favorite/Favorite';
 import { connect } from 'react-redux';
+import Box from '@material-ui/core/Box';
 
 class Favorites extends Component {
     render() {
@@ -15,10 +16,13 @@ class Favorites extends Component {
                     <Grid xs={12}>
                         <h2>Favorite Locations</h2>
                     </Grid>
-                    <Grid xs={12}>
-                        <h3>{this.props.description}</h3>
+                    <Grid xs={3} />
+                    <Grid xs={6}>
+                        <Box display="flex" flexWrap="wrap">
+                            {favorites}
+                        </Box>
                     </Grid>
-                    {favorites}
+                    <Grid xs={3} />
                 </Grid>
             </div>
         ); 

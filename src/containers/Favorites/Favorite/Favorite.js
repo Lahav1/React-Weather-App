@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import classes from './Favorite.module.css';
 import { withRouter } from 'react-router-dom';
 import { fetchCurrent } from '../../../utils'
+import Paper from '@material-ui/core/Paper';
 
 class Favorite extends Component {
     constructor(props) {
@@ -39,10 +40,10 @@ class Favorite extends Component {
         }
 
         return (
-            <div className={classes.Favorite} onClick={this.handleClick}> 
+            <Paper style={{width: "150px"}} onClick={this.handleClick}> 
                 <p>{this.props.city}</p>
                 {content}
-            </div>
+            </Paper>
         ); 
     }
 

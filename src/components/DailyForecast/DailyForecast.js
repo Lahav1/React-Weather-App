@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './DailyForecast.module.css'
+import Paper from '@material-ui/core/Paper';
 
 const getIcon = (number) => {
     if (number === '') {
@@ -12,11 +13,11 @@ const getIcon = (number) => {
 }
 
 const dailyForecast = (props) => (
-    <div className={classes.DailyForecast}>
-        <p>{props.day}</p>
+    <Paper style={{width: "120px"}}>
+        <p><b>{props.day}</b></p>
         <p>{props.min} - {props.max} °C</p>
         <img src={getIcon(props.iconNumber)} />
-    </div>
+    </Paper>
 );
 
 export default dailyForecast;
