@@ -11,6 +11,18 @@ class Favorites extends Component {
         let favorites = locations.map((location, index) => {
             return <Favorite city={location} key={index}/>;
         });
+
+        let favoriteDisplay;
+        if ((this.props.favorites === undefined) || (this.props.favorites.length == 0)) {
+            favoriteDisplay = <span> You don't have favorites yet. </span>
+        } else {
+            favoriteDisplay = (
+                <Box display="flex" flexWrap="wrap">
+                    {favorites}
+                </Box>
+            )
+        }
+
         return (
             <div>
                 <Grid container spacing={2}>
@@ -19,9 +31,7 @@ class Favorites extends Component {
                     </Grid>
                     <Grid xs={3} />
                     <Grid xs={6} className={classes.Box}>
-                        <Box display="flex" flexWrap="wrap">
-                            {favorites}
-                        </Box>
+                        {favoriteDisplay}
                     </Grid>
                     <Grid xs={3} />
                 </Grid>
