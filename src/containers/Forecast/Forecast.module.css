@@ -3,3 +3,8 @@
     /* width:60%; */
     /* margin: 0 auto; */
 }
+
+.errorText {
+    font-size: 12px;
+    color: red;
+}

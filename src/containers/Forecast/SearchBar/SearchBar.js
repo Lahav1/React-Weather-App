@@ -13,9 +13,7 @@ class SearchBar extends Component {
 
     sendToParent = () => {
         let val = document.getElementById("bar").value;
-        if (isValidSearch(val) == true) {
-            this.props.updateValue(val);
-        }   
+        this.props.updateValue(val);
     }
 
     handleChange = () => {

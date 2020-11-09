@@ -14,7 +14,7 @@ class Favorites extends Component {
 
         let favoriteDisplay;
         if ((this.props.favorites === undefined) || (this.props.favorites.length == 0)) {
-            favoriteDisplay = <span> You don't have favorites yet. </span>
+            favoriteDisplay = <span> You don't have favorites yet </span>
         } else {
             favoriteDisplay = (
                 <Box display="flex" flexWrap="wrap">

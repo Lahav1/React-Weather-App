@@ -119,7 +119,6 @@ class Result extends Component {
         let favoritesButton;
         if (this.checkIfFavorite() == true) {
             favoritesButton = <FavoritesButton addFunction={() => this.props.onFavoriteRemoved(this.state.city)} isFavorite={true} />          
-                
         } else {
             favoritesButton = <FavoritesButton addFunction={() => this.props.onFavoriteAdded(this.state.city)} isFavorite={false} />
         } 
@@ -136,9 +135,10 @@ class Result extends Component {
                                 <Grid container spacing={0}>
                                     <Grid item xs={2} />
                                     <Grid item xs={8}>
-                                        <span style={{fontSize:"20px"}}><b>{this.state.city}, {this.state.country}, {this.state.temeprature}°C, {this.state.weatherText}</b></span>
+                                        <span style={{fontSize:"22px"}}><b>{this.state.city}, {this.state.country}, {this.state.temeprature}°C, {this.state.weatherText}</b></span>
                                     </Grid>
                                     <Grid item xs={2} />
+                                    <Grid item xs={12}><br/></Grid>
                                     <Grid item xs={2} />
                                     <Grid item xs={8}>
                                         {favoritesButton}
