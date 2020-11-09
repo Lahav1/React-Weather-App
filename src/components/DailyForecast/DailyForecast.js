@@ -1,23 +1,14 @@
 import React from 'react';
 import classes from './DailyForecast.module.css'
 import Paper from '@material-ui/core/Paper';
-
-const getIcon = (number) => {
-    if (number === '') {
-        return;
-    }
-    if (number < 10) {
-        return `https://developer.accuweather.com/sites/default/files/0${number}-s.png`;
-    } 
-    return `https://developer.accuweather.com/sites/default/files/${number}-s.png`;
-}
+import { getIcon } from '../../utils'
 
 const dailyForecast = (props) => (
-    <Paper style={{width: "120px"}}>
+    <div className={classes.DailyForecast}>
         <p><b>{props.day}</b></p>
         <p>{props.min} - {props.max} °C</p>
         <img src={getIcon(props.iconNumber)} />
-    </Paper>
+    </div>
 );
 
 export default dailyForecast;

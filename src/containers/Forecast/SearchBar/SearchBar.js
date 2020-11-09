@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '../../../assets/images/search-icon.png';
 import classes from './SearchBar.module.css';
-import { getAutocomplete, handleSuggestions } from '../../../utils';
+import { getAutocomplete, handleSuggestions, isValidSearch } from '../../../utils';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 class SearchBar extends Component {
@@ -20,7 +20,7 @@ class SearchBar extends Component {
 
     handleChange = () => {
         let val = document.getElementById("bar").value;
-        if (val != "") {
+        if ((val != "") && (isValidSearch(val))) {
             getAutocomplete(val).then((data => this.setState({suggestions: handleSuggestions(data)})))
             .catch(error => this.setState({error:true}));    
         }

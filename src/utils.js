@@ -1,4 +1,4 @@
-export const key = "lwNK9RK7Rh0doJbagP4L6MANwqH6VZgg";
+export const key = "7wfkg9VySKi23IkQigjZ7w50Qp3rhArc";
 
 export const handleDate = (dateString) => {
     let date = dateString.split('T')[0];
@@ -69,3 +69,17 @@ export const fetchCurrentAndForecast = async (searchString) => {
     };
 }
 
+export const getIcon = (number) => {
+    if (number === '') {
+        return;
+    }
+    if (number < 10) {
+        return `https://developer.accuweather.com/sites/default/files/0${number}-s.png`;
+    } 
+    return `https://developer.accuweather.com/sites/default/files/${number}-s.png`;
+}
+
+export const isValidSearch = (str) => {
+    var regex = /^[A-Za-z ]+$/;
+    return regex.test(str);
+}

@@ -40,10 +40,10 @@ class Favorite extends Component {
         }
 
         return (
-            <Paper style={{width: "150px"}} onClick={this.handleClick}> 
-                <p>{this.props.city}</p>
+            <div className={classes.Favorite} onClick={this.handleClick}> 
+                <p><b>{this.props.city}</b></p>
                 {content}
-            </Paper>
+            </div>
         ); 
     }
 
