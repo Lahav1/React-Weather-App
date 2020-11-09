@@ -7,7 +7,7 @@ const toolbar = (props) => (
         <div>
             <Logo />
         </div>
-        <h style={{color:"white", fontSize:"130%"}}><b>Weather App</b></h>   
+        <span style={{color:"white", fontSize:"130%"}}><b>Weather App</b></span>   
         <nav>
             <NavigationItems />
         </nav>

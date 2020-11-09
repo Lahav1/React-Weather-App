@@ -1,4 +1,4 @@
-export const key = "7wfkg9VySKi23IkQigjZ7w50Qp3rhArc";
+export const key = "u1nHwqQjq2ErpSj7I1nRa0THniypSMlO";
 
 export const handleDate = (dateString) => {
     let date = dateString.split('T')[0];
@@ -80,6 +80,6 @@ export const getIcon = (number) => {
 }
 
 export const isValidSearch = (str) => {
-    var regex = /^[A-Za-z ]+$/;
+    var regex = /^[A-Za-z ,]+$/;
     return regex.test(str);
 }

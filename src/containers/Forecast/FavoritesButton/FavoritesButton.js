@@ -27,7 +27,7 @@ class FavoritesButton extends Component {
             <div>
                 <button className={classes.Button} onClick={this.handleClick}>
                     <img src={icon} className={classes.Image}/>
-                    <h className={classes.Text}>{text}</h>
+                    <span className={classes.Text}>{text}</span>
                 </button>
             </div>
         ); 

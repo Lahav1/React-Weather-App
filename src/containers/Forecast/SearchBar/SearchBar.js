@@ -8,21 +8,23 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 class SearchBar extends Component {
     constructor(props) {
         super(props);
-        this.state = { currentSearch: "", suggestions: [], error: false}
+        this.state = { suggestions: [], error: false }
     }
 
     sendToParent = () => {
         let val = document.getElementById("bar").value;
-        if (val != "") {
-            this.props.updateValue(document.getElementById("bar").value);
-        }
+        if (isValidSearch(val) == true) {
+            this.props.updateValue(val);
+        }   
     }
 
     handleChange = () => {
         let val = document.getElementById("bar").value;
-        if ((val != "") && (isValidSearch(val))) {
+        if (isValidSearch(val)) {
             getAutocomplete(val).then((data => this.setState({suggestions: handleSuggestions(data)})))
-            .catch(error => this.setState({error:true}));    
+            .catch(error => {
+                this.setState({suggestions: []})
+            });
         }
     }
 
@@ -45,7 +47,7 @@ class SearchBar extends Component {
                 />
                 <button className={classes.Button} onClick={this.sendToParent}>
                     <img className={classes.Image} src={SearchIcon}/>
-                    <h className={classes.Text}>Search</h>
+                    <span className={classes.Text}>Search</span>
                 </button>
             </div>
         ); 

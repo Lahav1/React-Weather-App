@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import classes from './Favorite.module.css';
 import { withRouter } from 'react-router-dom';
 import { fetchCurrent } from '../../../utils'
-import Paper from '@material-ui/core/Paper';
 
 class Favorite extends Component {
     constructor(props) {
@@ -21,13 +20,15 @@ class Favorite extends Component {
             city: this.props.city 
         });
     }
-    
-    render() {
+
+    componentDidMount = () => {
         fetchCurrent(this.props.city).then(data => {
             this.setState({temperature: data.currentWeather.Temperature.Metric.Value.toString(), 
                             description: data.currentWeather.WeatherText})
         }).catch(error => this.setState({error: true}));
-        
+    }
+    
+    render() {    
         // in case of an error, load an error message instead of the content.
         let content = <p>Sorry, something went wrong</p>;
         if (this.state.error == false) {
