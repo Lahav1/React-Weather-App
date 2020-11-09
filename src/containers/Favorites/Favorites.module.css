@@ -1,9 +1,9 @@
-.DailyForecast {
-    width: 100px;
-    margin: 3px;
+.Box {
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
+    padding: 8px;
     text-align: center;
     border-radius: 8px;
     word-wrap: break-word;
-}
+    background-image: linear-gradient( 109.6deg,  rgba(223,234,247,1) 11.2%, rgba(244,248,252,1) 91.1% );}
+

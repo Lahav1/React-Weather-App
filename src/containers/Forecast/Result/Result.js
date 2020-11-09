@@ -36,7 +36,8 @@ class Result extends Component {
             day5MinTemp: "",
             day5MaxTemp: "",
             day5Icon: "",
-            error: false
+            error: false,
+            searchString: this.props.searchString
         }
     };
 
@@ -50,7 +51,7 @@ class Result extends Component {
         return false;
     };
 
-    render() {
+    componentDidMount = () => {
         fetchCurrentAndForecast(this.props.searchString).then(data => {
             this.setState({
                 city: data.cityDetails.EnglishName,
@@ -79,7 +80,41 @@ class Result extends Component {
                 day5Icon: data.weatherForecast.DailyForecasts[4].Day.Icon,
             });   
         }).catch(error => this.setState({error: true}));
-        
+    }
+
+    componentDidUpdate = () => {
+        fetchCurrentAndForecast(this.props.searchString).then(data => {
+            this.setState({
+                city: data.cityDetails.EnglishName,
+                country: data.cityDetails.Country.EnglishName,
+                temeprature: data.currentWeather.Temperature.Metric.Value,
+                weatherText: data.currentWeather.WeatherText,
+                day1Date: handleDate(data.weatherForecast.DailyForecasts[0].Date),
+                day1MinTemp: toCelsius(data.weatherForecast.DailyForecasts[0].Temperature.Minimum.Value).toString(),
+                day1MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[0].Temperature.Maximum.Value).toString(),
+                day1Icon: data.weatherForecast.DailyForecasts[0].Day.Icon,
+                day2Date: handleDate(data.weatherForecast.DailyForecasts[1].Date),
+                day2MinTemp: toCelsius(data.weatherForecast.DailyForecasts[1].Temperature.Minimum.Value).toString(),
+                day2MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[1].Temperature.Maximum.Value).toString(),
+                day2Icon: data.weatherForecast.DailyForecasts[1].Day.Icon,
+                day3Date: handleDate(data.weatherForecast.DailyForecasts[2].Date),
+                day3MinTemp: toCelsius(data.weatherForecast.DailyForecasts[2].Temperature.Minimum.Value).toString(),
+                day3MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[2].Temperature.Maximum.Value).toString(),
+                day3Icon: data.weatherForecast.DailyForecasts[2].Day.Icon,
+                day4Date: handleDate(data.weatherForecast.DailyForecasts[3].Date),
+                day4MinTemp: toCelsius(data.weatherForecast.DailyForecasts[3].Temperature.Minimum.Value).toString(),
+                day4MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[3].Temperature.Maximum.Value).toString(),
+                day4Icon: data.weatherForecast.DailyForecasts[3].Day.Icon,
+                day5Date: handleDate(data.weatherForecast.DailyForecasts[4].Date),
+                day5MinTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Minimum.Value).toString(),
+                day5MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Maximum.Value).toString(),
+                day5Icon: data.weatherForecast.DailyForecasts[4].Day.Icon,
+            });   
+        }).catch(error => this.setState({error: true}));
+    }
+
+    render() {
+        // alert(this.props.searchString);
         let favoritesButton;
         if (this.checkIfFavorite() == true) {
             favoritesButton = <FavoritesButton addFunction={() => this.props.onFavoriteRemoved(this.state.city)} isFavorite={true} />          
@@ -94,23 +129,22 @@ class Result extends Component {
             content = (
                 <div className={classes.Result}> 
                     <Grid container spacing={2}>
-                        <Grid xs={3} />
-                        <Grid xs={6}>
+                        <Grid item xs={3} />
+                        <Grid item xs={6}>
                             <Box display="flex" flexWrap="wrap">
-                                <Grid container spacing={2}>
-                                    <Grid xs={4} />
-                                    <Grid xs={4}>
+                                <Grid container spacing={0}>
+                                    <Grid item xs={4} />
+                                    <Grid item xs={4}>
                                         <span style={{fontSize:"20px"}}><b>{this.state.city}, {this.state.country}, {this.state.temeprature}°C, {this.state.weatherText}</b></span>
                                     </Grid>
-                                    <Grid xs={4} />
-                                    <Grid xs={12}><br/></Grid>
-                                    <Grid xs={4} />
-                                    <Grid xs={4}>
+                                    <Grid item xs={4} />
+                                    <Grid item xs={4} />
+                                    <Grid item xs={4}>
                                         {favoritesButton}
                                     </Grid>
-                                    <Grid xs={4} />
-                                    <Grid xs={12}><br/><br/></Grid>
-                                    <Grid xs={1} />
+                                    <Grid item xs={4} />
+                                    <Grid item xs={12}><br/></Grid>
+                                    <Grid item xs={1} />
                                     <DailyForecast day={this.state.day1Date} min={this.state.day1MinTemp} max={this.state.day1MaxTemp} iconNumber={this.state.day1Icon} />
                                     <DailyForecast day={this.state.day2Date} min={this.state.day2MinTemp} max={this.state.day2MaxTemp} iconNumber={this.state.day2Icon} />
                                     <DailyForecast day={this.state.day3Date} min={this.state.day3MinTemp} max={this.state.day3MaxTemp} iconNumber={this.state.day3Icon} />

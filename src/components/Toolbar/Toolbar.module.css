@@ -4,13 +4,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: darkcyan;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 90;
+    /* background-image: linear-gradient(270deg, #008b8b 11%, #6bd4c7 53%, #008b8b 85%); */
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,107,141,1) 0%, rgba(0,69,91,1) 90% );
 }
 
 .Toolbar nav {

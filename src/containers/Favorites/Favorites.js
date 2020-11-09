@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Favorite from './Favorite/Favorite';
 import { connect } from 'react-redux';
 import Box from '@material-ui/core/Box';
+import classes from './Favorites.module.css'
 
 class Favorites extends Component {
     render() {
@@ -17,7 +18,7 @@ class Favorites extends Component {
                         <h2>Favorite Locations</h2>
                     </Grid>
                     <Grid xs={3} />
-                    <Grid xs={6}>
+                    <Grid xs={6} className={classes.Box}>
                         <Box display="flex" flexWrap="wrap">
                             {favorites}
                         </Box>
