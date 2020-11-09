@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
-import SearchIcon from '../../../assets/images/search-icon.png';
-import classes from './SearchBar.module.css';
-import { getAutocomplete, handleSuggestions, isValidSearch } from '../../../utils';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { getAutocomplete, handleSuggestions, isValidSearch } from '../../../utils';
+import classes from './SearchBar.module.css';
+import SearchIcon from '../../../assets/images/search-icon.png';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -11,6 +11,7 @@ class SearchBar extends Component {
         this.state = { suggestions: [], error: false }
     }
 
+    // pass the value to the parent (Forecast) component using the function received as a prop.
     sendToParent = () => {
         let val = document.getElementById("bar").value;
         this.props.updateValue(val);
@@ -18,6 +19,7 @@ class SearchBar extends Component {
 
     handleChange = () => {
         let val = document.getElementById("bar").value;
+        // if current value in searchbar is valid, fetch autocomplete.
         if (isValidSearch(val)) {
             getAutocomplete(val).then((data => this.setState({suggestions: handleSuggestions(data)})))
             .catch(error => {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import classes from './Favorite.module.css';
 import { withRouter } from 'react-router-dom';
+import classes from './Favorite.module.css';
 import { fetchCurrent } from '../../../utils'
 
 class Favorite extends Component {
@@ -15,6 +15,7 @@ class Favorite extends Component {
     }
 
     handleClick = () => {
+        // if favorite is clicked, navigate to forecast page and display it's details.
         this.props.history.push({
             pathname: '/',
             city: this.props.city 
@@ -22,6 +23,7 @@ class Favorite extends Component {
     }
 
     componentDidMount = () => {
+        // fetch the favorite item's current weather.
         fetchCurrent(this.props.city).then(data => {
             this.setState({temperature: data.currentWeather.Temperature.Metric.Value.toString(), 
                             description: data.currentWeather.WeatherText})
@@ -47,7 +49,6 @@ class Favorite extends Component {
             </div>
         ); 
     }
-
 }
 
 export default withRouter(Favorite);

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import SearchBar from './SearchBar/SearchBar';
-import Result from './Result/Result'
 import classes from './Forecast.module.css';
 import { isValidSearch } from '../../utils'
+import SearchBar from './SearchBar/SearchBar';
+import Result from './Result/Result'
 
 class Forecast extends Component {
     constructor(props) {
@@ -11,12 +11,12 @@ class Forecast extends Component {
     }
 
     updateSearchString = (value) => {
+        // if search string includes invalid chars, display error message.
         if (isValidSearch(value) == true) {
             this.setState({searchString: value, errorText: ""});
         } else {
             this.setState({errorText: "Only English letters allowed"})
         }
-        
     }
 
     componentDidMount() {

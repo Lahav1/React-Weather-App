@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import DailyForecast from '../../../components/DailyForecast/DailyForecast';
-import Grid from '@material-ui/core/Grid';
-import classes from './Result.module.css';
-import FavoritesButton from '../FavoritesButton/FavoritesButton'
-import { handleDate, toCelsius, fetchCurrentAndForecast } from '../../../utils'
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
+import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import classes from './Result.module.css';
+import { handleDate, toCelsius, fetchCurrentAndForecast } from '../../../utils'
+import FavoritesButton from '../FavoritesButton/FavoritesButton'
+import DailyForecast from '../../../components/DailyForecast/DailyForecast';
 
 class Result extends Component {
     constructor(props) {
@@ -116,6 +116,7 @@ class Result extends Component {
     }
 
     render() {
+        // check if item is in favorite list and create button using the according update function.
         let favoritesButton;
         if (this.checkIfFavorite() == true) {
             favoritesButton = <FavoritesButton addFunction={() => this.props.onFavoriteRemoved(this.state.city)} isFavorite={true} />          
@@ -158,7 +159,7 @@ class Result extends Component {
                                 </Grid>
                             </Box>
                         </Grid>
-                        <Grid xs={3} />
+                        <Grid item xs={3} />
                     </Grid>
                 </div>
             )

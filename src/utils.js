@@ -1,11 +1,13 @@
-export const key = "lFL73mBF0qClyOyC0dgBpirkgJSAb4KO";
+export const key = "jdyE9tam2JJwtRJQZOi3rWUSqfFS3pTq";
 
+// convert the date to DD/MM format.
 export const handleDate = (dateString) => {
     let date = dateString.split('T')[0];
     let splittedDate = date.split('-');
     return splittedDate[2] + '/' + splittedDate[1];
 }
 
+// create a string of '{city}, {country}'.
 export const handleSuggestions = (suggestions) => {
     let s = [];
     var suggestion;
@@ -49,6 +51,7 @@ export const getAutocomplete = async (str) => {
     return data;
 }
 
+// fetch current weather.
 export const fetchCurrent = async (searchString) => {
     const cityDetails = await getCityDetails(searchString);
     const currentWeather = await getCurrentWeather(cityDetails.Key);
@@ -58,6 +61,7 @@ export const fetchCurrent = async (searchString) => {
     };
 }
 
+// fetch current weather and 5-day forecast.
 export const fetchCurrentAndForecast = async (searchString) => {
     const cityDetails = await getCityDetails(searchString);
     const currentWeather = await getCurrentWeather(cityDetails.Key);
@@ -69,6 +73,7 @@ export const fetchCurrentAndForecast = async (searchString) => {
     };
 }
 
+// get the icon from the accuweather api website.
 export const getIcon = (number) => {
     if (number === '') {
         return;
@@ -79,6 +84,7 @@ export const getIcon = (number) => {
     return `https://developer.accuweather.com/sites/default/files/${number}-s.png`;
 }
 
+// check if a search string is valid (english letters + basic chars) using regex.
 export const isValidSearch = (str) => {
     var regex = /^[A-Za-z ,-]+$/;
     return regex.test(str);

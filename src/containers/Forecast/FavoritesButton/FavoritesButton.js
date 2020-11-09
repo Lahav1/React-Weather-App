@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import classes from './FavoritesButton.module.css';
 import AddButton from '../../../assets/images/add-to-favorites.png';
 import RemoveButton from '../../../assets/images/remove-from-favorites.svg';
-import classes from './FavoritesButton.module.css';
 
 class FavoritesButton extends Component {
     constructor(props) {
@@ -14,6 +14,7 @@ class FavoritesButton extends Component {
     }
 
     render() {
+        // check if item is in favorite list and display icon and text accordingly.
         let icon;
         let text;
         if (this.props.isFavorite == true) {
