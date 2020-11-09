@@ -78,6 +78,7 @@ class Result extends Component {
                 day5MinTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Minimum.Value).toString(),
                 day5MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Maximum.Value).toString(),
                 day5Icon: data.weatherForecast.DailyForecasts[4].Day.Icon,
+                error: false
             });   
         }).catch(error => this.setState({error: true}));
     }
@@ -109,12 +110,12 @@ class Result extends Component {
                 day5MinTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Minimum.Value).toString(),
                 day5MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Maximum.Value).toString(),
                 day5Icon: data.weatherForecast.DailyForecasts[4].Day.Icon,
+                error: false
             });   
         }).catch(error => this.setState({error: true}));
     }
 
     render() {
-        // alert(this.props.searchString);
         let favoritesButton;
         if (this.checkIfFavorite() == true) {
             favoritesButton = <FavoritesButton addFunction={() => this.props.onFavoriteRemoved(this.state.city)} isFavorite={true} />          
@@ -124,7 +125,7 @@ class Result extends Component {
         } 
 
         // in case of an error, load an error message instead of the content.
-        let content = <p>Sorry, something went wrong</p>;
+        let content = <p>Sorry, there are no matches for your search</p>;
         if (this.state.error == false) {
             content = (
                 <div className={classes.Result}> 

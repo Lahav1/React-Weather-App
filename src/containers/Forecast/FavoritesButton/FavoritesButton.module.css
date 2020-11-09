@@ -4,6 +4,7 @@
     line-height: 24px;
     vertical-align: middle;
     outline:none;
+    cursor:pointer;
 }
 
 .Image {
