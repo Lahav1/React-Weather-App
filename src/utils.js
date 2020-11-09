@@ -15,7 +15,7 @@ export const handleSuggestions = (suggestions) => {
     return s;
 }
 
-export const toCelsius = (f) => Math.round((5/9) * (f - 32) * 10) / 10;
+export const toCelsius = (f) => Math.round((5/9) * (f - 32));
 
 export const getCityDetails = async (searchString) => {
     const base = 'https://dataservice.accuweather.com/locations/v1/cities/search';

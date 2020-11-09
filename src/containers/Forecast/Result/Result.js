@@ -133,23 +133,27 @@ class Result extends Component {
                         <Grid item xs={6}>
                             <Box display="flex" flexWrap="wrap">
                                 <Grid container spacing={0}>
-                                    <Grid item xs={4} />
-                                    <Grid item xs={4}>
+                                    <Grid item xs={2} />
+                                    <Grid item xs={8}>
                                         <span style={{fontSize:"20px"}}><b>{this.state.city}, {this.state.country}, {this.state.temeprature}°C, {this.state.weatherText}</b></span>
                                     </Grid>
-                                    <Grid item xs={4} />
-                                    <Grid item xs={4} />
-                                    <Grid item xs={4}>
+                                    <Grid item xs={2} />
+                                    <Grid item xs={2} />
+                                    <Grid item xs={8}>
                                         {favoritesButton}
                                     </Grid>
-                                    <Grid item xs={4} />
+                                    <Grid item xs={2} />
                                     <Grid item xs={12}><br/></Grid>
                                     <Grid item xs={1} />
-                                    <DailyForecast day={this.state.day1Date} min={this.state.day1MinTemp} max={this.state.day1MaxTemp} iconNumber={this.state.day1Icon} />
-                                    <DailyForecast day={this.state.day2Date} min={this.state.day2MinTemp} max={this.state.day2MaxTemp} iconNumber={this.state.day2Icon} />
-                                    <DailyForecast day={this.state.day3Date} min={this.state.day3MinTemp} max={this.state.day3MaxTemp} iconNumber={this.state.day3Icon} />
-                                    <DailyForecast day={this.state.day4Date} min={this.state.day4MinTemp} max={this.state.day4MaxTemp} iconNumber={this.state.day4Icon} />
-                                    <DailyForecast day={this.state.day5Date} min={this.state.day5MinTemp} max={this.state.day5MaxTemp} iconNumber={this.state.day5Icon} />
+                                    <Grid item>
+                                        <Box display="flex" flexWrap="wrap">
+                                            <DailyForecast day={this.state.day1Date} min={this.state.day1MinTemp} max={this.state.day1MaxTemp} iconNumber={this.state.day1Icon} />
+                                            <DailyForecast day={this.state.day2Date} min={this.state.day2MinTemp} max={this.state.day2MaxTemp} iconNumber={this.state.day2Icon} />
+                                            <DailyForecast day={this.state.day3Date} min={this.state.day3MinTemp} max={this.state.day3MaxTemp} iconNumber={this.state.day3Icon} />
+                                            <DailyForecast day={this.state.day4Date} min={this.state.day4MinTemp} max={this.state.day4MaxTemp} iconNumber={this.state.day4Icon} />
+                                            <DailyForecast day={this.state.day5Date} min={this.state.day5MinTemp} max={this.state.day5MaxTemp} iconNumber={this.state.day5Icon} />
+                                        </Box>
+                                    </Grid>
                                 </Grid>
                             </Box>
                         </Grid>
