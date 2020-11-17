@@ -83,38 +83,6 @@ class Result extends Component {
         }).catch(error => this.setState({error: true}));
     }
 
-    componentDidUpdate = () => {
-        fetchCurrentAndForecast(this.props.searchString).then(data => {
-            this.setState({
-                city: data.cityDetails.EnglishName,
-                country: data.cityDetails.Country.EnglishName,
-                temeprature: data.currentWeather.Temperature.Metric.Value,
-                weatherText: data.currentWeather.WeatherText,
-                day1Date: handleDate(data.weatherForecast.DailyForecasts[0].Date),
-                day1MinTemp: toCelsius(data.weatherForecast.DailyForecasts[0].Temperature.Minimum.Value).toString(),
-                day1MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[0].Temperature.Maximum.Value).toString(),
-                day1Icon: data.weatherForecast.DailyForecasts[0].Day.Icon,
-                day2Date: handleDate(data.weatherForecast.DailyForecasts[1].Date),
-                day2MinTemp: toCelsius(data.weatherForecast.DailyForecasts[1].Temperature.Minimum.Value).toString(),
-                day2MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[1].Temperature.Maximum.Value).toString(),
-                day2Icon: data.weatherForecast.DailyForecasts[1].Day.Icon,
-                day3Date: handleDate(data.weatherForecast.DailyForecasts[2].Date),
-                day3MinTemp: toCelsius(data.weatherForecast.DailyForecasts[2].Temperature.Minimum.Value).toString(),
-                day3MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[2].Temperature.Maximum.Value).toString(),
-                day3Icon: data.weatherForecast.DailyForecasts[2].Day.Icon,
-                day4Date: handleDate(data.weatherForecast.DailyForecasts[3].Date),
-                day4MinTemp: toCelsius(data.weatherForecast.DailyForecasts[3].Temperature.Minimum.Value).toString(),
-                day4MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[3].Temperature.Maximum.Value).toString(),
-                day4Icon: data.weatherForecast.DailyForecasts[3].Day.Icon,
-                day5Date: handleDate(data.weatherForecast.DailyForecasts[4].Date),
-                day5MinTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Minimum.Value).toString(),
-                day5MaxTemp: toCelsius(data.weatherForecast.DailyForecasts[4].Temperature.Maximum.Value).toString(),
-                day5Icon: data.weatherForecast.DailyForecasts[4].Day.Icon,
-                error: false
-            });   
-        }).catch(error => this.setState({error: true}));
-    }
-
     render() {
         // check if item is in favorite list and create button using the according update function.
         let favoritesButton;

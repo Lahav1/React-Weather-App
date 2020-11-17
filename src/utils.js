@@ -1,4 +1,4 @@
-export const key = "jdyE9tam2JJwtRJQZOi3rWUSqfFS3pTq";
+export const key = "Fc6E4XaSIIGRjXPbKePHwzj0UZ2OAMTt";
 
 // convert the date to DD/MM format.
 export const handleDate = (dateString) => {

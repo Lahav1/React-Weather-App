@@ -28,12 +28,14 @@ class SearchBar extends Component {
         }
     }
 
-    render() {
+    componentDidUpdate() {
         // in case of an error, empty the auto complete suggestion list.
         if (this.state.error == true) {
             this.setState({suggestions: []});
         }
-        
+    }
+
+    render() {
         return (
             <div className={classes.Content}>
                 <Autocomplete 

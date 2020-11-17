@@ -27,11 +27,12 @@ class Forecast extends Component {
     }
     
     render() {
+        console.log(this.state.searchString);
         return (
             <div className={classes.Forecast}>
                 <SearchBar updateValue={this.updateSearchString}/>
                 <p className={classes.errorText}>{this.state.errorText}</p>
-                <Result searchString={this.state.searchString}/>
+                <Result key={this.state.searchString} searchString={this.state.searchString}/>
             </div>
         ); 
     }
